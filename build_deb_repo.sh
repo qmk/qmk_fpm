@@ -34,7 +34,7 @@ apt-ftparchive \
 	-o APT::FTPArchive::Release::Label="$ID" \
 	-o APT::FTPArchive::Release::Suite="stable" \
 	-o APT::FTPArchive::Release::Codename="$VERSION_CODENAME" \
-	-o APT::FTPArchive::Release::Architectures="all" \
+	-o APT::FTPArchive::Release::Architectures="any" \
 	-o APT::FTPArchive::Release::Components="main" \
 	release . > Release
 
