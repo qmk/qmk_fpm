@@ -22,16 +22,19 @@ else
 fi
 
 # Create the repo structure
-mkdir -p deb_repo/deb deb_repo/main
+mkdir -p deb_repo/deb deb_repo/main/binary-amd64 deb_repo/main/binary-arm deb_repo/main/binary-arm64
 cp *.deb deb_repo/deb
 cd deb_repo
 
 # Build the repo metadata
-apt-ftparchive packages deb > main/Packages
-gzip -k main/Packages
+for dir in deb_repo/main/binary-amd64 deb_repo/main/binary-arm deb_repo/main/binary-arm64; do
+	apt-ftparchive packages deb > ${dir}/Packages
+	gzip -k ${dir}/Packages
+done
+
 apt-ftparchive \
-	-o APT::FTPArchive::Release::Origin="$ID" \
-	-o APT::FTPArchive::Release::Label="$ID" \
+	-o APT::FTPArchive::Release::Origin="QMK" \
+	-o APT::FTPArchive::Release::Label="QMK $ID Package" \
 	-o APT::FTPArchive::Release::Suite="stable" \
 	-o APT::FTPArchive::Release::Codename="$VERSION_CODENAME" \
 	-o APT::FTPArchive::Release::Architectures="any" \
