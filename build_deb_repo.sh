@@ -37,7 +37,7 @@ apt-ftparchive \
 	-o APT::FTPArchive::Release::Label="QMK $ID Package" \
 	-o APT::FTPArchive::Release::Suite="stable" \
 	-o APT::FTPArchive::Release::Codename="$VERSION_CODENAME" \
-	-o APT::FTPArchive::Release::Architectures="any" \
+	-o APT::FTPArchive::Release::Architectures="i386 amd64 arm arm64" \
 	-o APT::FTPArchive::Release::Components="main" \
 	release . > Release
 
