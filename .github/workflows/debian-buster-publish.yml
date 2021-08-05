@@ -29,6 +29,8 @@ jobs:
       run: ./build_deb_package.sh
 
     - name: Build debian package repository
+      env:
+        QMK_GPG_PRIVATE_KEY: ${{ secrets.QMK_GPG_PRIVATE_KEY }}
       run: ./build_deb_repo.sh
 
     - name: Upload Debian Repo
