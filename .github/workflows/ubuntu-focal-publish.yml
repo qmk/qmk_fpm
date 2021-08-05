@@ -16,7 +16,7 @@ jobs:
     - name: Install system dependencies
       run: |
         apt-get update
-        apt-get install dpkg-sig python3-pip python3-venv
+        apt-get install -y dpkg-sig python3-pip python3-venv
 
     - name: Install python dependencies
       run: |
