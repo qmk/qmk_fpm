@@ -2,8 +2,6 @@
 
 set -e
 
-. /etc/os-release
-
 rm -rf deb_repo
 
 if ! [ -e qmk ]; then
@@ -21,15 +19,22 @@ else
 	echo -e '\n*** Warning: Could not import GPG key!\n'
 fi
 
+set -x
+
+. /etc/os-release
+
+ARCHITECTURES="i386 amd64 arm arm64"
+
 # Create the repo structure
-mkdir -p deb_repo/deb deb_repo/main/binary-amd64 deb_repo/main/binary-arm deb_repo/main/binary-arm64 deb_repo/main/binary-i386
+mkdir -p deb_repo/deb
 cp *.deb deb_repo/deb
 cd deb_repo
 
 # Build the repo metadata
-for dir in deb_repo/main/binary-amd64 deb_repo/main/binary-arm deb_repo/main/binary-arm64 deb_repo/main/binary-i386; do
-	apt-ftparchive packages deb > ${dir}/Packages
-	gzip -k ${dir}/Packages
+for arch in $ARCHITECTURES; do
+	mkdir -p deb_repo/main/binary-$arch
+	apt-ftparchive packages deb > deb_repo/main/binary-${arch}/Packages
+	gzip -k deb_repo/main/binary-${arch}/Packages
 done
 
 apt-ftparchive \
