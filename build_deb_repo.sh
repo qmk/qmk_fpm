@@ -22,12 +22,12 @@ else
 fi
 
 # Create the repo structure
-mkdir -p deb_repo/deb deb_repo/main/binary-amd64 deb_repo/main/binary-arm deb_repo/main/binary-arm64
+mkdir -p deb_repo/deb deb_repo/main/binary-amd64 deb_repo/main/binary-arm deb_repo/main/binary-arm64 deb_repo/main/binary-i386
 cp *.deb deb_repo/deb
 cd deb_repo
 
 # Build the repo metadata
-for dir in deb_repo/main/binary-amd64 deb_repo/main/binary-arm deb_repo/main/binary-arm64; do
+for dir in deb_repo/main/binary-amd64 deb_repo/main/binary-arm deb_repo/main/binary-arm64 deb_repo/main/binary-i386; do
 	apt-ftparchive packages deb > ${dir}/Packages
 	gzip -k ${dir}/Packages
 done
