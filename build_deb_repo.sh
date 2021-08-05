@@ -14,6 +14,13 @@ if ! [ -e qmk ]; then
 	./build_deb_package.sh
 fi
 
+# Import the GPG key
+if [ -n "$QMK_GPG_SECRET_KEY" ]; then
+	echo -e "$QMK_GPG_SECRET_KEY" | gpg --batch --import
+else
+	echo -e '\n*** Warning: Could not import GPG key!\n'
+fi
+
 # Create the repo structure
 mkdir -p deb_repo/deb deb_repo/main
 cp *.deb deb_repo/deb
