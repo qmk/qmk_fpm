@@ -15,8 +15,8 @@ if ! [ -e qmk ]; then
 fi
 
 # Import the GPG key
-if [ -n "$QMK_GPG_SECRET_KEY" ]; then
-	echo -e "$QMK_GPG_SECRET_KEY" | gpg --batch --import
+if [ -n "$QMK_GPG_PRIVATE_KEY" ]; then
+	echo -e "$QMK_GPG_PRIVATE_KEY" | gpg --batch --import
 else
 	echo -e '\n*** Warning: Could not import GPG key!\n'
 fi
