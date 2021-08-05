@@ -16,8 +16,9 @@ jobs:
     - name: Install system dependencies
       run: |
         apt-get update
-        apt-get install -y dpkg-sig python3-pip python3-venv
+        apt-get install -y dpkg-sig python3-pip python3-venv ruby ruby-dev rubygems build-essential
         python3 -m pip install virtualenv-tools3
+        gem install --no-document fpm
 
     # Build Ubuntu package
     - name: Build debian package
