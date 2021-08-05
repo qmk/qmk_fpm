@@ -27,6 +27,8 @@ fpm \
 	--input-type dir \
 	--name qmk \
 	--version "${QMK_VERSION}-1" \
+	--description "Quantum Mechanical Keyboard (QMK) Firmware.\n\nQMK is an open source keyboard firmware that can build a firmware and custom\nlayout for hundreds of keyboards, or your own custom design." \
+	--url "https://qmk.fm/" \
 	--output-type deb \
 	--license expat \
 	--vendor QMK \
