@@ -32,9 +32,9 @@ cd deb_repo
 
 # Build the repo metadata
 for arch in $ARCHITECTURES; do
-	mkdir -p deb_repo/main/binary-$arch
-	apt-ftparchive packages deb > deb_repo/main/binary-${arch}/Packages
-	gzip -k deb_repo/main/binary-${arch}/Packages
+	mkdir -p main/binary-$arch
+	apt-ftparchive packages deb > main/binary-${arch}/Packages
+	gzip -k main/binary-${arch}/Packages
 done
 
 apt-ftparchive \
