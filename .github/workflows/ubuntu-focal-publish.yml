@@ -17,6 +17,7 @@ jobs:
       run: |
         apt-get update
         apt-get install -y dpkg-sig python3-pip python3-venv
+        python3 -m pip install virtualenv-tools
 
     # Build Ubuntu package
     - name: Build debian package
