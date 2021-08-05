@@ -29,7 +29,14 @@ cd deb_repo
 # Build the repo metadata
 apt-ftparchive packages deb > main/Packages
 gzip -k main/Packages
-apt-ftparchive release . > Release
+apt-ftparchive \
+	-o APT::FTPArchive::Release::Origin="$ID" \
+	-o APT::FTPArchive::Release::Label="$ID" \
+	-o APT::FTPArchive::Release::Suite="stable" \
+	-o APT::FTPArchive::Release::Codename="$VERSION_CODENAME" \
+	-o APT::FTPArchive::Release::Architectures="all" \
+	-o APT::FTPArchive::Release::Components="main" \
+	release . > Release
 
 # Sign the repo for security
 dpkg-sig -s builder -k F464DFD46C4DA3FD4D06234691B06358D2CAE8AE deb/*.deb
