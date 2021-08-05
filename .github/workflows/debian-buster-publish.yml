@@ -1,6 +1,6 @@
 # This workflow will upload a .deb Package 
 
-name: Upload QMK Ubuntu Package
+name: Upload QMK Debian Package
 
 on:
   workflow_dispatch:
