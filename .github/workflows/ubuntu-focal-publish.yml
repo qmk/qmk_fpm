@@ -19,6 +19,8 @@ jobs:
         apt-get install -y dpkg-sig python3-pip python3-venv
 
     - name: Install GPG secret key
+      env:
+        QMK_GPG_PRIVATE_KEY: ${{ secrets.QMK_GPG_PRIVATE_KEY }}
       run: |
         echo -e "${{ secrets.QMK_GPG_SECRET_KEY }}" | gpg --batch --import
         gpg --list-secret-keys --keyid-format LONG
@@ -28,8 +30,6 @@ jobs:
       run: ./build_deb_package.sh
 
     - name: Build debian package repository
-      env:
-        QMK_GPG_PRIVATE_KEY: ${{ secrets.QMK_GPG_PRIVATE_KEY }}
       run: ./build_deb_repo.sh
 
     - name: Upload Debian Repo
