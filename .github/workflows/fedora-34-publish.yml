@@ -1,0 +1,51 @@
+# This workflow will upload a .deb Package 
+
+name: Upload QMK Fedora 34 Package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    container: fedora:34
+
+    steps:
+    # Environment Setup
+    - name: Install system dependencies
+      run: |
+        dnf install -y ruby-devel gcc make rpm-build rpm-sign libffi-devel createrepo python3-pip git
+        python3 -m pip install virtualenv-tools3
+        gem install --no-document fpm
+
+    - name: Setup git
+      run: |
+        git config --global user.name "QMK Bot"
+        git config --global user.email "hello@qmk.fm"
+
+    # Fetch our git repo
+    - uses: actions/checkout@v2.3.4
+
+    # Build Fedora package
+    - name: Build fedora package
+      run: ./build_fedora_package.sh
+
+    - name: Build fedora package repository
+      env:
+        QMK_GPG_PRIVATE_KEY: ${{ secrets.QMK_GPG_PRIVATE_KEY }}
+      run: ./build_fedora_repo.sh
+
+    - name: Upload Fedora Repo
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: qmk-debian
+        AWS_ACCESS_KEY_ID: ${{ secrets.SPACES_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_KEY }}
+        AWS_S3_ENDPOINT: https://nyc3.digitaloceanspaces.com
+        SOURCE_DIR: 'rpm_repo'
+        DEST_DIR: 'dists/fedora/34'
+
+    - name: Push git changes
+      run: git push
