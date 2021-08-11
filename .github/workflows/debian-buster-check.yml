@@ -1,6 +1,6 @@
 # This workflow will check if a new deb should be published
 
-name: Check for new QMK Debian Package
+name: Check QMK Debian Package
 
 on:
   workflow_dispatch:
