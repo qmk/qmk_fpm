@@ -16,7 +16,7 @@ jobs:
     # Environment Setup
     - name: Install system dependencies
       run: |
-        dnf install -y ruby-devel gcc make rpm-build libffi-devel createrepo python3-pip
+        dnf install -y ruby-devel gcc make rpm-build rpm-sign libffi-devel createrepo python3-pip
         python3 -m pip install -r requirements.txt
         gem install --no-document fpm
 

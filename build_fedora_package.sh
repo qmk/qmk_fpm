@@ -2,7 +2,7 @@
 
 set -e
 
-# Import the GPG key
+# Import the GPG private key
 if [ -n "$QMK_GPG_PRIVATE_KEY" ]; then
         echo '*** Importing GPG key...'
         echo "$QMK_GPG_PRIVATE_KEY" | gpg --batch --import
@@ -15,6 +15,11 @@ set -x
 . /etc/os-release
 
 rm -rf qmk
+
+# Setup the GPG infrastructure
+rpm --import gpg_pubkey.txt
+rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+cp rpmmacros ~/.rpmmacros
 
 # Build the virtualenv
 mkdir -p qmk/etc/yum.repos.d qmk/usr/bin qmk/usr/lib/udev/rules.d qmk/usr/share/python
