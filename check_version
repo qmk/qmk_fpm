@@ -53,8 +53,8 @@ for line in qmk_deb_release.text.split('\n'):
 if qmk_pypi_version != qmk_deb_version:
     print(f'{version_codename.title()} packages are out of date!')
     print(f'Triggering {gh_workflow_id} workflow at: {gh_workflow_endpoint}')
-    workflow_dispatch = requests.post(gh_workflow_endpoint, headers=gh_workflow_headers, data=gh_workflow_args, auth=(gh_user, gh_pat))
-    if workflow_dispatch.status_code != 200:
+    workflow_dispatch = requests.post(gh_workflow_endpoint, headers=gh_workflow_headers, json=gh_workflow_args, auth=(gh_user, gh_pat))
+    if workflow_dispatch.status_code != 204:
         print(f'Error from GitHub API, status_code {workflow_dispatch.status_code}!')
         print(workflow_dispatch.text)
         exit(1)
