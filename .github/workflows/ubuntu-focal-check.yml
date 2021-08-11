@@ -16,7 +16,7 @@ jobs:
 
     - name: Check for update and trigger build
       run: |
-        python3 -m pip install requests
+        sudo python3 -m pip install requests
         ./check_version
       env:
         WORKFLOW_ID: ubuntu-focal-publish.yml
