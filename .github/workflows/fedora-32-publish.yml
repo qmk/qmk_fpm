@@ -20,6 +20,11 @@ jobs:
         python3 -m pip install -r requirements.txt
         gem install --no-document fpm
 
+    - name: Setup git
+      run: |
+        git config --global user.name "QMK Bot"
+        git config --global user.email "hello@qmk.fm"
+
     # Build Fedora package
     - name: Build fedora package
       run: ./build_fedora_package.sh
@@ -40,3 +45,6 @@ jobs:
         AWS_S3_ENDPOINT: https://nyc3.digitaloceanspaces.com
         SOURCE_DIR: 'rpm_repo'
         DEST_DIR: 'dists/fedora/32'
+
+    - name: Push git changes
+      run: git push
