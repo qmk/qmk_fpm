@@ -50,3 +50,9 @@ apt-ftparchive \
 dpkg-sig -s builder -k F464DFD46C4DA3FD4D06234691B06358D2CAE8AE deb/*.deb
 gpg --default-key F464DFD46C4DA3FD4D06234691B06358D2CAE8AE -abs -o Release.gpg Release
 gpg --default-key F464DFD46C4DA3FD4D06234691B06358D2CAE8AE --clearsign -o InRelease Release
+
+# Debugging information
+cd ..
+find deb_repo -type f -ls
+echo MD5: $(md5sum deb_repo/deb/*.deb)
+echo SHA256: $(sha256sum deb_repo/deb/*.deb)
