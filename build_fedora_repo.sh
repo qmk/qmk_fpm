@@ -29,6 +29,9 @@ ARCHITECTURES="i386 amd64 arm arm64"
 mkdir -p rpm_repo
 cp qmk/*.rpm rpm_repo
 
+# Sign the package
+rpm --addsign rpm_repo/*.rpm
+
 # Build the repo metadata
 createrepo -v -s md5 rpm_repo
 
