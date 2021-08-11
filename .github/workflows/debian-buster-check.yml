@@ -25,3 +25,4 @@ jobs:
       run: ./check_version
       env:
         WORKFLOW_ID: debian-buster-publish.yml
+        QMK_BOT_TOKEN: ${{ secrets.QMK_BOT_TOKEN }}
