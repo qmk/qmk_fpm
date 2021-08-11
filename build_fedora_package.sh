@@ -15,7 +15,7 @@ qmk/usr/share/python/qmk/bin/pip install qmk
 # Extract the version
 QMK_VERSION=$(qmk/usr/share/python/qmk/bin/qmk --version)
 sed -i s,/qmk-[0-9.]*-1.noarch.rpm,/qmk-${QMK_VERSION}-1.noarch.rpm, README.md
-git commit -m"Update RPM version to ${QMK_VERSION}" README.md
+git commit -m"Update RPM version to ${QMK_VERSION}" README.md || true
 
 # Make the virtualenv work in the final location
 virtualenv-tools --update-path /usr/share/python/qmk qmk/usr/share/python/qmk
