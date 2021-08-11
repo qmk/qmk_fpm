@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
 set -e
+
+# Import the GPG key
+if [ -n "$QMK_GPG_PRIVATE_KEY" ]; then
+        echo '*** Importing GPG key...'
+        echo "$QMK_GPG_PRIVATE_KEY" | gpg --batch --import
+else
+        echo -e '\n*** Warning: Could not import GPG key!\n'
+fi
+
 set -x
 
 . /etc/os-release
