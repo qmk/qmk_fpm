@@ -1,10 +1,22 @@
 #!/usr/bin/env python3
 """Check if we need to update the QMK release.
 """
-
+from os import environ
 from pathlib import Path
 
 import requests
+
+# Pull in environment vars
+gh_user = environ.get('GH_USERNAME', 'qmk-bot')
+gh_pat = environ.get('QMK_BOT_TOKEN', '')
+gh_repo_owner = environ.get('REPO_OWNER', 'qmk')
+gh_repo_name = environ.get('REPO_NAME', 'qmk_fpm')
+gh_ref = environ.get('GITHUB_REF', 'main')
+gh_workflow_id = environ.get('WORKFLOW_ID', '')
+gh_api_url = environ.get('GITHUB_API_URL', 'https://api.github.com')
+gh_workflow_endpoint = environ.get('GH_WORKFLOW_ENDPOINT', f'{gh_api_url}/repos/{gh_repo_owner}/{gh_repo_name}/actions/workflows/{gh_workflow_id}/dispatches')
+gh_workflow_args = {'ref': gh_ref}
+gh_workflow_headers = {'Accept': 'application/vnd.github.v3+json'}
 
 # Get the pypi version
 pypi_qmk = requests.get('https://pypi.org/pypi/qmk/json')
@@ -37,10 +49,14 @@ for line in qmk_deb_release.text.split('\n'):
         qmk_deb_version = line.split(' ', 1)[1].split('-')[0]
         break
 
-# Check that the versions match
+# If the versions don't match start the update job
 if qmk_pypi_version != qmk_deb_version:
     print(f'{version_codename.title()} packages are out of date!')
-    exit(0)
-else:
-    print(f'{version_codename.title()} packages are up to date!')
-    exit(1)
+    print(f'Triggering {gh_workflow_id} workflow at: {gh_workflow_endpoint}')
+    workflow_dispatch = requests.post(gh_workflow_endpoint, headers=gh_workflow_headers, data=gh_workflow_args, auth=(gh_user, gh_pat))
+    if workflow_dispatch.status_code != 200:
+        print(f'Error from GitHub API, status_code {workflow_dispatch.status_code}!')
+        print(workflow_dispatch.text)
+        exit(1)
+
+exit(0)

@@ -22,10 +22,6 @@ jobs:
         python3 -m pip install -r requirements.txt
         gem install --no-document fpm
 
-    # Check package version
-    - name: Check if update needed
-      run: ./check_version
-
     # Build Ubuntu package
     - name: Build debian package
       run: ./build_deb_package.sh

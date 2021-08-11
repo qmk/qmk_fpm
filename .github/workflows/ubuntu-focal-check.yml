@@ -1,0 +1,22 @@
+# This workflow will check if a new deb should be published
+
+name: Check for new QMK Debian Package
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '45 4 * * *'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2.3.4
+
+    - name: Check for update and trigger build
+      run: |
+        python3 -m pip install requests
+        ./check_version
+      env:
+        WORKFLOW_ID: ubuntu-focal-publish.yml
