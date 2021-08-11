@@ -33,7 +33,7 @@ cd deb_repo
 # Build the repo metadata
 for arch in $ARCHITECTURES; do
 	mkdir -p main/binary-$arch
-	apt-ftparchive packages deb > main/binary-${arch}/Packages
+	apt-ftparchive packages deb | sed "s,^Filename: ,Filename: dists/${VERSION_CODENAME}/," > main/binary-${arch}/Packages
 	gzip -k main/binary-${arch}/Packages
 done
 
