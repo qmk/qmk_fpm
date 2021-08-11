@@ -21,7 +21,7 @@ jobs:
         gem install --no-document fpm
 
     # Build Fedora package
-    - name: Build fedroa package
+    - name: Build fedora package
       run: ./build_fedora_package.sh
 
     - name: Build fedora package repository

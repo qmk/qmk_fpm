@@ -21,7 +21,7 @@ ln -s ../share/python/qmk/bin/qmk qmk/usr/bin/qmk
 
 # Copy in some other files
 cp 50-qmk.rules qmk/usr/lib/udev/rules.d/
-sed "s,%VERSION_ID%,${VERSION_ID}," qmk.repo > qmk/etc/yum.repos.d/qmk.repo
+sed "s,%VERSION_ID%,${VERSION_ID}," qmk.fedora.repo > qmk/etc/yum.repos.d/qmk-fedora-${VERSION_ID}.repo
 
 # Build the fedora package
 cd qmk
