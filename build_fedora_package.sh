@@ -2,24 +2,24 @@
 
 set -e
 
-# Import the GPG private key
-if [ -n "$QMK_GPG_PRIVATE_KEY" ]; then
-        echo '*** Importing GPG key...'
-        echo "$QMK_GPG_PRIVATE_KEY" | gpg --batch --import
-else
-        echo -e '\n*** Warning: Could not import GPG key!\n'
-fi
-
-set -x
+## Import the GPG private key
+#if [ -n "$QMK_GPG_PRIVATE_KEY" ]; then
+#        echo '*** Importing GPG key...'
+#        echo "$QMK_GPG_PRIVATE_KEY" | gpg --batch --import
+#else
+#        echo -e '\n*** Warning: Could not import GPG key!\n'
+#fi
+#
+#set -x
 
 . /etc/os-release
 
 rm -rf qmk
 
 # Setup the GPG infrastructure
-rpm --import gpg_pubkey.txt
-rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
-cp rpmmacros ~/.rpmmacros
+#rpm --import gpg_pubkey.txt
+#rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+#cp rpmmacros ~/.rpmmacros
 
 # Build the virtualenv
 mkdir -p qmk/etc/yum.repos.d qmk/usr/bin qmk/usr/lib/udev/rules.d qmk/usr/share/python
@@ -54,7 +54,6 @@ layout for hundreds of keyboards, or your own custom design." \
 	--category devel \
 	--architecture all \
 	--maintainer 'QMK Firmware (Official QMK GPG Signing Key) <hello@qmk.fm>' \
-	--rpm-sign \
 	--depends clang \
 	--depends diffutils \
 	--depends git \
