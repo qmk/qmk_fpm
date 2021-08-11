@@ -1,3 +1,0 @@
-# This file is used for the package building infrastructure. The
-# requirements listed here will not end up in the built packages.
-virtualenv-tools3
