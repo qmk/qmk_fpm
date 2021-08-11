@@ -23,6 +23,7 @@ ln -s ../share/python/qmk/bin/qmk qmk/usr/bin/qmk
 cp 50-qmk.rules qmk/usr/lib/udev/rules.d/
 
 # Build the debian package
+cd qmk
 fpm \
 	--input-type dir \
 	--name qmk \
@@ -57,4 +58,4 @@ fpm \
 	--depends teensy-loader-cli \
 	--depends libhidapi-hidraw0 \
 	--depends libusb-dev \
-	qmk
+	.
