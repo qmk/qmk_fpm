@@ -27,7 +27,7 @@ ARCHITECTURES="i386 amd64 arm arm64"
 
 # Create the repo structure
 mkdir -p deb_repo/deb
-cp *.deb deb_repo/deb
+cp qmk/*.deb deb_repo/deb
 cd deb_repo
 
 # Sign the packages
