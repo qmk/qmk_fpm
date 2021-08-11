@@ -77,4 +77,4 @@ layout for hundreds of keyboards, or your own custom design." \
 	--depends dfu-programmer \
 	--depends dfu-util \
 	--depends hidapi \
-	.
+	. < /dev/null
