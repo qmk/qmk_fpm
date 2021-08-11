@@ -30,6 +30,9 @@ mkdir -p deb_repo/deb
 cp *.deb deb_repo/deb
 cd deb_repo
 
+# Sign the packages
+dpkg-sig -s builder -k F464DFD46C4DA3FD4D06234691B06358D2CAE8AE deb/*.deb
+
 # Build the repo metadata
 for arch in $ARCHITECTURES; do
 	mkdir -p main/binary-$arch
@@ -47,7 +50,6 @@ apt-ftparchive \
 	release . > Release
 
 # Sign the repo for security
-dpkg-sig -s builder -k F464DFD46C4DA3FD4D06234691B06358D2CAE8AE deb/*.deb
 gpg --default-key F464DFD46C4DA3FD4D06234691B06358D2CAE8AE -abs -o Release.gpg Release
 gpg --default-key F464DFD46C4DA3FD4D06234691B06358D2CAE8AE --clearsign -o InRelease Release
 
