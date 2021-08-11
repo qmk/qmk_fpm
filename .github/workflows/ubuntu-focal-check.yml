@@ -14,9 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
 
-    - name: Check for update and trigger build
+    - name: Install system dependencies
       run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip
         sudo python3 -m pip install requests
-        ./check_version
+
+    - name: Check for update and trigger build
+      run: ./check_version
       env:
         WORKFLOW_ID: ubuntu-focal-publish.yml
