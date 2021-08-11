@@ -56,3 +56,5 @@ cd ..
 find deb_repo -type f -ls
 echo MD5: $(md5sum deb_repo/deb/*.deb)
 echo SHA256: $(sha256sum deb_repo/deb/*.deb)
+echo Packages:
+cat deb_repo/main/binary-amd64/Packages
