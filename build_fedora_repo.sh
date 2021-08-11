@@ -30,6 +30,7 @@ mkdir -p rpm_repo
 cp qmk/*.rpm rpm_repo
 
 # Sign the package
+cp rpmmacros ~/.rpmmacros
 rpm --addsign rpm_repo/*.rpm
 
 # Build the repo metadata
