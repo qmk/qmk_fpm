@@ -21,8 +21,13 @@ git commit -m"Update RPM version to ${QMK_VERSION}" README.md || true
 virtualenv-tools --update-path /usr/share/python/qmk qmk/usr/share/python/qmk
 ln -s ../share/python/qmk/bin/qmk qmk/usr/bin/qmk
 
+# Install the qmk_udev package
+git clone https://github.com/qmk/qmk_udev.git
+cd qmk_udev
+make DESTDIR=../qmk PREFIX=/usr install
+cd ..
+
 # Copy in some other files
-cp 50-qmk.rules qmk/usr/lib/udev/rules.d/
 sed "s,%VERSION_ID%,${VERSION_ID}," qmk.fedora.repo > qmk/etc/yum.repos.d/qmk-fedora-${VERSION_ID}.repo
 
 # Build the fedora package
