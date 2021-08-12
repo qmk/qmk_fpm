@@ -8,7 +8,7 @@ set -x
 rm -rf deb_repo qmk *.deb
 
 # Build the virtualenv
-mkdir -p qmk/usr/bin qmk/usr/lib/udev/rules.d qmk/usr/share/python
+mkdir -p qmk/usr/bin qmk/usr/share/python
 python3 -m venv qmk/usr/share/python/qmk
 qmk/usr/share/python/qmk/bin/pip install qmk
 
@@ -19,8 +19,12 @@ QMK_VERSION=$(qmk/usr/share/python/qmk/bin/qmk --version)
 virtualenv-tools --update-path /usr/share/python/qmk qmk/usr/share/python/qmk
 ln -s ../share/python/qmk/bin/qmk qmk/usr/bin/qmk
 
-# Copy in some other files
-cp 50-qmk.rules qmk/usr/lib/udev/rules.d/
+# Install the qmk_udev package
+git clone https://github.com/qmk/qmk_udev.git
+cd qmk_udev
+make
+make DESTDIR=../qmk PREFIX=/usr install
+cd ..
 
 # Build the debian package
 cd qmk
