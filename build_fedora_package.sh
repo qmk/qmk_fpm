@@ -24,7 +24,6 @@ ln -s ../share/python/qmk/bin/qmk qmk/usr/bin/qmk
 # Install the qmk_udev package
 git clone https://github.com/qmk/qmk_udev.git
 cd qmk_udev
-make
 make DESTDIR=../qmk PREFIX=/usr install
 cd ..
 
