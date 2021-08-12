@@ -45,7 +45,7 @@ First install the QMK pubkey:
     curl https://debian.qmk.fm/gpg_pubkey.txt > qmk.pubkey
     sudo rpm --import qmk.pubkey
 
-Next identify the Version ID for your Fedora, this will be 32, 33, 34, or 35:
+Next identify the Version ID for your Fedora, this will be 32, 33, or 34:
 
     grep VERSION_ID /etc/os-release
 
@@ -54,3 +54,5 @@ Install the package for your version:
     dnf install https://debian.qmk.fm/dists/fedora/{VERSION_ID}/qmk-0.3.3-1.noarch.rpm
 
 Make sure you replace `{VERSION_ID}` with the number you got from `/etc/os-release`.
+
+Note: We do not support Fedora 35 yet.
