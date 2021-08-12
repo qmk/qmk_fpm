@@ -18,7 +18,6 @@ jobs:
         python3 -m pip install virtualenv-tools3
         gem install --no-document fpm
 
-    - name: Setup git
       run: |
         git config --global user.name "QMK Bot"
         git config --global user.email "hello@qmk.fm"
@@ -46,6 +45,3 @@ jobs:
         AWS_S3_ENDPOINT: https://nyc3.digitaloceanspaces.com
         SOURCE_DIR: 'rpm_repo'
         DEST_DIR: 'dists/fedora/33'
-
-    - name: Push git changes
-      run: git push

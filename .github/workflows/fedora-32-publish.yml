@@ -49,3 +49,8 @@ jobs:
 
     - name: Push git changes
       run: git push
+
+    - name: Trigger newer Fedora package builds
+      run: ./trigger_packages
+      env:
+        QMK_BOT_TOKEN: ${{ secrets.QMK_BOT_TOKEN }}

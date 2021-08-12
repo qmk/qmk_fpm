@@ -46,6 +46,3 @@ jobs:
         AWS_S3_ENDPOINT: https://nyc3.digitaloceanspaces.com
         SOURCE_DIR: 'rpm_repo'
         DEST_DIR: 'dists/fedora/35'
-
-    - name: Push git changes
-      run: git push
