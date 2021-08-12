@@ -18,6 +18,7 @@ jobs:
         python3 -m pip install virtualenv-tools3
         gem install --no-document fpm
 
+    - name: Setup git
       run: |
         git config --global user.name "QMK Bot"
         git config --global user.email "hello@qmk.fm"
