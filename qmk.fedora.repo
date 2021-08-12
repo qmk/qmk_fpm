@@ -1,5 +1,5 @@
 [QMK]
 name=QMK Package Repository
-baseurl=http://debian.qmk.fm/dists/fedora/%VERSION_ID%
+baseurl=http://linux.qmk.fm/dists/fedora/%VERSION_ID%
 enabled=1
 gpgcheck=1

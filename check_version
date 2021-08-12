@@ -38,7 +38,7 @@ for line in os_release.split('\n'):
         version_codename=line.split('=', 1)[1]
         break
 
-qmk_deb_release = requests.get(f'https://debian.qmk.fm/dists/{version_codename}/main/binary-amd64/Packages')
+qmk_deb_release = requests.get(f'https://linux.qmk.fm/dists/{version_codename}/main/binary-amd64/Packages')
 
 if qmk_deb_release.status_code != 200:
     print(f'Could not fetch %s Packages file: {qmk_deb_release.status_code}: {qmk_deb_release.text}')
