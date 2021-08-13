@@ -4,8 +4,6 @@ name: Upload QMK Ubuntu Package
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '15 1 * * *'
 
 jobs:
   deploy:
