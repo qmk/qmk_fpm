@@ -40,7 +40,7 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: qmk-debian
+        AWS_S3_BUCKET: qmk-linux
         AWS_ACCESS_KEY_ID: ${{ secrets.SPACES_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_KEY }}
         AWS_S3_ENDPOINT: https://nyc3.digitaloceanspaces.com
