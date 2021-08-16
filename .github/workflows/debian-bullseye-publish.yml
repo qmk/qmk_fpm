@@ -1,6 +1,6 @@
 # This workflow will upload a .deb Package 
 
-name: Upload Debian Buster Package
+name: Upload Debian Bullseye Package
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
-    container: debian:buster
+    container: debian:bullseye
 
     steps:
     - uses: actions/checkout@v2.3.4
@@ -40,4 +40,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_KEY }}
         AWS_S3_ENDPOINT: https://nyc3.digitaloceanspaces.com
         SOURCE_DIR: 'deb_repo'
-        DEST_DIR: 'dists/buster'
+        DEST_DIR: 'dists/bullseye'

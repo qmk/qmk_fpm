@@ -15,6 +15,15 @@ Add this to /etc/apt/sources.list:
 
 Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
 
+### Debian 11 (bullseye)
+
+Add this to /etc/apt/sources.list:
+
+    # QMK
+    deb https://linux.qmk.fm/ bullseye main
+
+Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
+
 ### Ubuntu 20.04 (focal)
 
 Add this to /etc/apt/sources.list:
