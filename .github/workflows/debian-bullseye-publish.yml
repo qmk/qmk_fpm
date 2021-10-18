@@ -11,7 +11,7 @@ jobs:
     container: debian:bullseye
 
     steps:
-    - uses: actions/checkout@v2.3.4
+    - uses: actions/checkout@v2.3.5
 
     # Environment Setup
     - name: Install system dependencies
