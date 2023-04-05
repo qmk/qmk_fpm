@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+. /etc/os-release
+
+rm -rf qmk
+
+# Build the virtualenv
+mkdir -p qmk/usr/bin qmk/usr/share/python
+python3 -m venv qmk/usr/share/python/qmk
+qmk/usr/share/python/qmk/bin/pip install qmk
+
+# Extract the version
+QMK_VERSION=$(qmk/usr/share/python/qmk/bin/qmk --version)
+
+# Update the version and push to the repo
+sed -i s,/qmk-[0-9.]*-1.noarch.rpm,/qmk-${QMK_VERSION}-1.noarch.rpm, README.md
+git commit -m"Update RPM version to ${QMK_VERSION}" README.md || true
+git push

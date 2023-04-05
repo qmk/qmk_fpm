@@ -6,12 +6,12 @@ This repo exists to generate packages for the QMK cli.
 
 ## Debian-like
 
-### Debian 10 (buster)
+### Debian 12 (bookworm)
 
 Add this to /etc/apt/sources.list:
 
     # QMK
-    deb https://linux.qmk.fm/ buster main
+    deb https://linux.qmk.fm/ bookworm main
 
 Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
 
@@ -21,6 +21,24 @@ Add this to /etc/apt/sources.list:
 
     # QMK
     deb https://linux.qmk.fm/ bullseye main
+
+Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
+
+### Debian 10 (buster)
+
+Add this to /etc/apt/sources.list:
+
+    # QMK
+    deb https://linux.qmk.fm/ buster main
+
+Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
+
+### Ubuntu 22.04 (jammy)
+
+Add this to /etc/apt/sources.list:
+
+    # QMK
+    deb https://linux.qmk.fm/ jammy main
 
 Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
 
@@ -54,7 +72,7 @@ First install the QMK pubkey:
     curl https://linux.qmk.fm/gpg_pubkey.txt > qmk.pubkey
     sudo rpm --import qmk.pubkey
 
-Next identify the Version ID for your Fedora, this will be 32, 33, or 34:
+Next identify the Version ID for your Fedora, this will be 36..38:
 
     grep VERSION_ID /etc/os-release
 
@@ -64,4 +82,3 @@ Install the package for your version:
 
 Make sure you replace `{VERSION_ID}` with the number you got from `/etc/os-release`.
 
-Note: We do not support Fedora 35 yet.

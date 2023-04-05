@@ -1,14 +1,29 @@
-# This workflow will upload a .deb Package 
+# This workflow will upload a .deb Package
 
-name: Upload Debian Buster Package
+name: Upload Debian Bullseye Package
 
 on:
   workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
-    container: debian:buster
+    strategy:
+      matrix:
+        codename: [buster, bullseye, bookworm, focal, jammy]
+        include:
+          - codename: buster
+            container: debian:buster
+          - codename: bullseye
+            container: debian:bullseye
+          - codename: bookworm
+            container: debian:bookworm
+          - codename: focal
+            container: ubuntu:focal
+          - codename: jammy
+            container: ubuntu:jammy
+
+    runs-on: ubuntu-latest
+    container: ${{ matrix.container }}
 
     steps:
     - uses: actions/checkout@v4.0.0
@@ -17,8 +32,8 @@ jobs:
     - name: Install system dependencies
       run: |
         apt-get update
-        apt-get install -y build-essential apt-utils dpkg-sig python3-pip python3-venv ruby ruby-dev rubygems git
-        python3 -m pip install virtualenv-tools3
+        apt-get install -y build-essential apt-utils dpkg-sig python3-pip python3-venv python3-pillow ruby ruby-dev rubygems git zlib1g-dev
+        python3 -m pip install virtualenv-tools3 wheel
         gem install --no-document fpm
 
     # Build Debian package
@@ -40,4 +55,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_KEY }}
         AWS_S3_ENDPOINT: https://nyc3.digitaloceanspaces.com
         SOURCE_DIR: 'deb_repo'
-        DEST_DIR: 'dists/buster'
+        DEST_DIR: 'dists/bullseye'

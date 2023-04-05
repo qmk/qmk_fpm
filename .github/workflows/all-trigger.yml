@@ -1,0 +1,26 @@
+name: Trigger all package builds
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip git
+        sudo python3 -m pip install virtualenv-tools3 requests
+
+    - uses: actions/checkout@v3
+
+    - name: Update version and trigger newer package builds
+      env:
+        QMK_BOT_TOKEN: ${{ secrets.QMK_BOT_TOKEN }}
+      run: |
+        git config --global user.name "QMK Bot"
+        git config --global user.email "hello@qmk.fm"
+        ./update_version
+        ./trigger_packages

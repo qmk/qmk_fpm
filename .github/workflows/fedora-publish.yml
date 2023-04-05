@@ -1,14 +1,25 @@
-# This workflow will upload a .deb Package 
+# This workflow will upload a .rpm Package
 
-name: Upload QMK Fedora 32 Package
+name: Upload QMK Fedora Packages
 
 on:
   workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
-    container: fedora:32
+    strategy:
+      matrix:
+        version: [36, 37, 38]
+        include:
+          - version: 36
+            container: fedora:36
+          - version: 37
+            container: fedora:37
+          - version: 38
+            container: fedora:38
+
+    runs-on: ubuntu-latest
+    container: ${{ matrix.container }}
 
     steps:
     # Environment Setup
@@ -45,14 +56,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_KEY }}
         AWS_S3_ENDPOINT: https://nyc3.digitaloceanspaces.com
         SOURCE_DIR: 'rpm_repo'
-        DEST_DIR: 'dists/fedora/32'
-
-    - name: Push git changes
-      run: git push
-
-    - name: Trigger newer Fedora package builds
-      run: |
-        python3 -m pip install requests
-        ./trigger_packages
-      env:
-        QMK_BOT_TOKEN: ${{ secrets.QMK_BOT_TOKEN }}
+        DEST_DIR: 'dists/fedora/${{ matrix.version }}'

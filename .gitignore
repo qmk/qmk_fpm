@@ -1,3 +1,4 @@
 deb_repo
 *.deb
 qmk
+qmk_udev
