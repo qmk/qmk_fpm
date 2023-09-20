@@ -35,7 +35,7 @@ jobs:
         git config --global user.email "hello@qmk.fm"
 
     # Fetch our git repo
-    - uses: actions/checkout@v4.0.0
+    - uses: actions/checkout@v4
 
     # Build Fedora package
     - name: Build fedora package
