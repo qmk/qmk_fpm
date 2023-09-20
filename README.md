@@ -4,58 +4,16 @@ This repo exists to generate packages for the QMK cli.
 
 # Usage instructions
 
-## Debian-like
+## Debian-like, or Ubuntu-like distributions
 
-### Debian 12 (bookworm)
+Add the QMK source to your apt repositories list:
 
-Add this to /etc/apt/sources.list:
-
-    # QMK
-    deb https://linux.qmk.fm/ bookworm main
-
-Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
-
-### Debian 11 (bullseye)
-
-Add this to /etc/apt/sources.list:
-
-    # QMK
-    deb https://linux.qmk.fm/ bullseye main
-
-Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
-
-### Debian 10 (buster)
-
-Add this to /etc/apt/sources.list:
-
-    # QMK
-    deb https://linux.qmk.fm/ buster main
-
-Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
-
-### Ubuntu 22.04 (jammy)
-
-Add this to /etc/apt/sources.list:
-
-    # QMK
-    deb https://linux.qmk.fm/ jammy main
-
-Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
-
-### Ubuntu 20.04 (focal)
-
-Add this to /etc/apt/sources.list:
-
-    # QMK
-    deb https://linux.qmk.fm/ focal main
-
-Then follow the instructions under [All Debian-like distributions](all-debian-like-distributions).
-
-### All Debian-like distributions
+     # QMK
+    echo "deb https://linux.qmk.fm/ $(lsb_release --codename --short) main" | sudo tee /etc/apt/sources.list.d/qmk.list
 
 Add the QMK GPG Key:
 
-    curl https://linux.qmk.fm/gpg_pubkey.txt | sudo apt-key add -
+    wget -qO - https://linux.qmk.fm/gpg_pubkey.txt | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/qmk-gpg-pubkey.gpg > /dev/null
 
 Update apt:
 
@@ -69,16 +27,11 @@ Install QMK:
 
 First install the QMK pubkey:
 
-    curl https://linux.qmk.fm/gpg_pubkey.txt > qmk.pubkey
-    sudo rpm --import qmk.pubkey
-
-Next identify the Version ID for your Fedora, this will be 36..38:
-
-    grep VERSION_ID /etc/os-release
+    sudo rpm --import https://linux.qmk.fm/gpg_pubkey.txt
 
 Install the package for your version:
 
-    dnf install https://linux.qmk.fm/dists/fedora/{VERSION_ID}/qmk-1.1.2-1.noarch.rpm
+    dnf install https://linux.qmk.fm/dists/fedora/$(lsb_release --short --release)/qmk-1.1.2-1.noarch.rpm
 
 Make sure you replace `{VERSION_ID}` with the number you got from `/etc/os-release`.
 
