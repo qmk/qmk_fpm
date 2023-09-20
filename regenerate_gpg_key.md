@@ -16,6 +16,12 @@ Key is valid for? `3y`
 
 ### Key Propagation
 
+Run the following to get the old fingerprint (long hexadecimal string in the output):
+
+```sh
+cat gpg_pubkey.txt | gpg --import-options show-only --import
+```
+
 Export the public key:
 
 ```sh
@@ -29,3 +35,11 @@ Update GitHub organization secrets:
 * QMK_GPG_PRIVATE_KEY
 
 Upload `gpg_pubkey.txt` to https://linux.qmk.fm/gpg_pubkey.txt (on DigitalOcean Spaces)
+
+Run the following to get the new fingerprint (long hexadecimal string in the output):
+
+```sh
+cat gpg_pubkey.txt | gpg --import-options show-only --import
+```
+
+Update all instances of the old fingerprint in `build_deb_repo.sh`.
