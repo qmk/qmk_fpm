@@ -59,4 +59,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_KEY }}
         AWS_S3_ENDPOINT: https://nyc3.digitaloceanspaces.com
         SOURCE_DIR: 'deb_repo'
-        DEST_DIR: 'dists/bullseye'
+        DEST_DIR: 'dists/${{ matrix.codename }}'
