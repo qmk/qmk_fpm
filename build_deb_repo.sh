@@ -31,7 +31,7 @@ cp qmk/*.deb deb_repo/deb
 cd deb_repo
 
 # Sign the packages
-dpkg-sig -s builder -k F464DFD46C4DA3FD4D06234691B06358D2CAE8AE deb/*.deb
+dpkg-sig -s builder -k 305A22FBF6427314212C61E88B748CC185DF5DA1 deb/*.deb
 
 # Build the repo metadata
 for arch in $ARCHITECTURES; do
@@ -50,8 +50,8 @@ apt-ftparchive \
 	release . > Release
 
 # Sign the repo for security
-gpg --default-key F464DFD46C4DA3FD4D06234691B06358D2CAE8AE -abs -o Release.gpg Release
-gpg --default-key F464DFD46C4DA3FD4D06234691B06358D2CAE8AE --clearsign -o InRelease Release
+gpg --default-key 305A22FBF6427314212C61E88B748CC185DF5DA1 -abs -o Release.gpg Release
+gpg --default-key 305A22FBF6427314212C61E88B748CC185DF5DA1 --clearsign -o InRelease Release
 
 # Debugging information
 cd ..
