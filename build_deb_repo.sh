@@ -31,6 +31,7 @@ cp qmk/*.deb deb_repo/deb
 cd deb_repo
 
 # Sign the packages
+export PATH="$PATH:/usr/share/debdelta"
 dpkg-sig -s builder -k 305A22FBF6427314212C61E88B748CC185DF5DA1 deb/*.deb
 
 # Build the repo metadata
