@@ -34,7 +34,7 @@ cp rpmmacros ~/.rpmmacros
 rpm --addsign rpm_repo/*.rpm
 
 # Build the repo metadata
-createrepo -v -s md5 rpm_repo
+createrepo -v -s sha256 rpm_repo
 
 # Debugging information
 find rpm_repo -type f -ls
