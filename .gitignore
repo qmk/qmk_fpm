@@ -2,3 +2,4 @@ deb_repo
 *.deb
 qmk
 qmk_udev
+gpg_private_key.txt
