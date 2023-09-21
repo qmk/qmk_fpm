@@ -21,8 +21,6 @@ jobs:
             container: ubuntu:focal
           - codename: jammy
             container: ubuntu:jammy
-          - codename: kinetic
-            container: ubuntu:kinetic
           - codename: lunar
             container: ubuntu:lunar
 
