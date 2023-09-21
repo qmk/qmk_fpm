@@ -9,7 +9,7 @@ jobs:
   deploy:
     strategy:
       matrix:
-        codename: [buster, bullseye, bookworm, focal, jammy]
+        codename: [buster, bullseye, bookworm, focal, jammy, lunar]
         include:
           - codename: buster
             container: debian:buster
