@@ -32,6 +32,3 @@ First install the QMK pubkey:
 Install the package for your version:
 
     dnf install https://linux.qmk.fm/dists/fedora/$(lsb_release --short --release)/qmk-1.1.2-1.noarch.rpm
-
-Make sure you replace `{VERSION_ID}` with the number you got from `/etc/os-release`.
-
