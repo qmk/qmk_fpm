@@ -33,6 +33,7 @@ jobs:
     # Environment Setup
     - name: Install system dependencies
       run: |
+        export DEBIAN_FRONTEND=noninteractive
         apt-get update
         apt-get install -y build-essential apt-utils libconfig-file-perl python3-pip python3-venv python3-pillow python3-wheel ruby ruby-dev rubygems git libjpeg-dev zlib1g-dev
         apt-get install -y dpkg-sig || true
