@@ -39,14 +39,14 @@ jobs:
         apt-get install -y debdelta || true
         gem install --no-document fpm
         python3 -m venv .venv
-        source .venv/bin/activate
+        . .venv/bin/activate
         python3 -m pip install virtualenv-tools3 wheel
         deactivate
 
     # Build Debian package
     - name: Build debian package
       run: |
-        source .venv/bin/activate
+        . .venv/bin/activate
         ./build_deb_package.sh
         deactivate
 
@@ -54,7 +54,7 @@ jobs:
       env:
         QMK_GPG_PRIVATE_KEY: ${{ secrets.QMK_GPG_PRIVATE_KEY }}
       run: |
-        source .venv/bin/activate
+        . .venv/bin/activate
         ./build_deb_repo.sh
         deactivate
 
