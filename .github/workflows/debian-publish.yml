@@ -9,7 +9,7 @@ jobs:
   deploy:
     strategy:
       matrix:
-        codename: [buster, bullseye, bookworm, focal, jammy, lunar]
+        codename: [buster, bullseye, bookworm, focal, jammy, lunar, mantic]
         include:
           - codename: buster
             container: debian:buster
@@ -23,6 +23,8 @@ jobs:
             container: ubuntu:jammy
           - codename: lunar
             container: ubuntu:lunar
+          - codename: mantic
+            container: ubuntu:mantic
 
     runs-on: ubuntu-latest
     container: ${{ matrix.container }}
