@@ -40,6 +40,7 @@ jobs:
         apt-get install -y build-essential apt-utils libconfig-file-perl python3-pip python3-venv python3-pillow python3-wheel ruby ruby-dev rubygems git libjpeg-dev zlib1g-dev
         apt-get install -y dpkg-sig || true
         apt-get install -y debdelta || true
+        gem install dotenv -v 2.8.1  # New versions of dotenv don't support older versions of ruby in older Debian-like releases, we have a >0 constraint so install the last-known-good version.
         gem install --no-document fpm
         python3 -m venv .venv
         . .venv/bin/activate
