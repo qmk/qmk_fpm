@@ -17,6 +17,8 @@ jobs:
             container: fedora:37
           - version: 38
             container: fedora:38
+          - version: 39
+            container: fedora:39
 
     runs-on: ubuntu-latest
     container: ${{ matrix.container }}
