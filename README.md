@@ -27,5 +27,5 @@ sudo apt install qmk
 sudo rpm --import https://linux.qmk.fm/gpg_pubkey.txt
 
 # Install the package for your version:
-dnf install https://linux.qmk.fm/dists/fedora/$(lsb_release --short --release)/qmk-1.1.5-1.noarch.rpm
+dnf install https://linux.qmk.fm/dists/fedora/$(lsb_release --short --release)/qmk-1.1.6-1.noarch.rpm
 ```
