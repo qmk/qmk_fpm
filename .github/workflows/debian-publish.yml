@@ -30,7 +30,7 @@ jobs:
     container: ${{ matrix.container }}
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     # Environment Setup
     - name: Install system dependencies
