@@ -1,3 +1,7 @@
+# DEPRECATED
+
+Please use the installation script on the [Setting Up Your QMK Environment ](https://docs.qmk.fm/newbs_getting_started) page for setting up your build environment instead of relying on `qmk_fpm`. These packages are no longer maintained.
+
 # QMK FPM
 
 This repo exists to generate packages for the QMK cli.
